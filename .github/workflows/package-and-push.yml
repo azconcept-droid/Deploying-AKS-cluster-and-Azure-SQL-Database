@@ -1,0 +1,46 @@
+name: Terraform Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.14.x
+
+    - name: Configure Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      env:
+        TF_VAR_resource_group_name: your-resource-group-name
+        TF_VAR_aks_cluster_name: your-aks-cluster-name
+        TF_VAR_sql_server_name: your-sql-server-name
+        TF_VAR_sql_database_name: your-sql-database-name
+
+    - name: Configure kubectl
+      run: az aks get-credentials --resource-group ${{ secrets.TF_VAR_resource_group_name }} --name ${{ secrets.TF_VAR_aks_cluster_name }}
+
+    - name: Cleanup Terraform
+      run: terraform destroy -auto-approve
+      env:
+        TF_VAR_resource_group_name: your-resource-group-name
+        TF_VAR_aks_cluster_name: your-aks-cluster-name
+        TF_VAR_sql_server_name: your-sql-server-name
+        TF_VAR_sql_database_name: your-sql-database-name
