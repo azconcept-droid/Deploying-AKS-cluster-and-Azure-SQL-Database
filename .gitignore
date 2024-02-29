@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+# installation scripts
+install-*
+
 # Crash log files
 crash.log
 
