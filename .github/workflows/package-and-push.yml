@@ -1,4 +1,4 @@
-name: Terraform Deployment
+name: AKS-cluster and Azure-SQL-DB Deployment
 
 on:
   push:
@@ -29,10 +29,10 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve
       env:
-        TF_VAR_resource_group_name: your-resource-group-name
-        TF_VAR_aks_cluster_name: your-aks-cluster-name
-        TF_VAR_sql_server_name: your-sql-server-name
-        TF_VAR_sql_database_name: your-sql-database-name
+        TF_VAR_resource_group_name: aks-resource-group
+        TF_VAR_aks_cluster_name: aks-cluster
+        TF_VAR_sql_server_name: aks-sql-server
+        TF_VAR_sql_database_name: aks-sql-database
 
     - name: Configure kubectl
       run: az aks get-credentials --resource-group ${{ secrets.TF_VAR_resource_group_name }} --name ${{ secrets.TF_VAR_aks_cluster_name }}
@@ -40,7 +40,7 @@ jobs:
     - name: Cleanup Terraform
       run: terraform destroy -auto-approve
       env:
-        TF_VAR_resource_group_name: your-resource-group-name
-        TF_VAR_aks_cluster_name: your-aks-cluster-name
-        TF_VAR_sql_server_name: your-sql-server-name
-        TF_VAR_sql_database_name: your-sql-database-name
+        TF_VAR_resource_group_name: aks-resource-group
+        TF_VAR_aks_cluster_name: aks-cluster
+        TF_VAR_sql_server_name: aks-sql-server
+        TF_VAR_sql_database_name: aks-sql-database
