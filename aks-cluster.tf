@@ -23,13 +23,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
     os_disk_size_gb = 8
   }
 
-  service_principal {
-    client_id     = var.appId
-    client_secret = var.password
-    tenant_id     = var.tenantId
+  identity {
+    type = "SystemAssigned"
   }
-
-  role_based_access_control_enabled = true
 
   network_profile {
     network_plugin = "azure"
