@@ -1,6 +1,4 @@
-provider "azurerm" {
-  features = {}
-}
+# Create a new virtual Network
 
 resource "azurerm_resource_group" "network" {
   name     = "sql-network-rg"
