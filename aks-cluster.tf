@@ -18,7 +18,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = azurerm_resource_group.aks.location
   resource_group_name = azurerm_resource_group.aks.name
   dns_prefix          = "${random_pet.prefix.id}-k8s"
-  kubernetes_version  = "1.26.3"
 
   default_node_pool {
     name            = "default"
@@ -33,6 +32,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   role_based_access_control_enabled = true
+
+  network_profile {
+    network_plugin = "azure"
+  }
 
   tags = {
     environment = "production"
