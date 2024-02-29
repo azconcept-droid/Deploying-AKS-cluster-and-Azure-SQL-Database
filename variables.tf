@@ -20,7 +20,3 @@ variable "dbUser" {
   type = string
 }
 
-variable "tenantId" {
-  description = "Azure Kubernetes Service Cluster password"
-  type = string
-}
