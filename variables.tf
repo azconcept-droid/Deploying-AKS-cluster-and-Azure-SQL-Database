@@ -9,3 +9,13 @@ variable "password" {
   description = "Azure Kubernetes Service Cluster password"
   type = string
 }
+
+variable "dbPasswd" {
+  description = "Azure Kubernetes Service Cluster password"
+  type = string
+}
+
+variable "dbUser" {
+  description = "Azure Kubernetes Service Cluster password"
+  type = string
+}
