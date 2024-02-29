@@ -7,8 +7,8 @@ resource "azurerm_sql_server" "database" {
   resource_group_name          = azurerm_resource_group.aks.name
   location                     = azurerm_resource_group.aks.location
   version                      = "12.0"
-  administrator_login          = var.dbuser
-  administrator_login_password = var.dbpasswd
+  administrator_login          = var.dbUser
+  administrator_login_password = var.dbPasswd
 }
 
 resource "azurerm_sql_database" "database" {
