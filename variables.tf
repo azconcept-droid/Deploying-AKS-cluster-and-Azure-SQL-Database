@@ -19,3 +19,8 @@ variable "dbUser" {
   description = "Azure Kubernetes Service Cluster password"
   type = string
 }
+
+variable "tenantId" {
+  description = "Azure Kubernetes Service Cluster password"
+  type = string
+}
