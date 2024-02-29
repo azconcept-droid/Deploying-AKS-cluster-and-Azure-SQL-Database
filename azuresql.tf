@@ -3,7 +3,7 @@
 
 
 resource "azurerm_sql_server" "database" {
-  name                         = "my-sql-server"
+  name                         = "aks-sql-server"
   resource_group_name          = azurerm_resource_group.aks.name
   location                     = azurerm_resource_group.aks.location
   version                      = "12.0"
@@ -12,7 +12,7 @@ resource "azurerm_sql_server" "database" {
 }
 
 resource "azurerm_sql_database" "database" {
-  name                = "my-sql-database"
+  name                = "aks-sql-database"
   resource_group_name = azurerm_resource_group.aks.name
   location            = azurerm_resource_group.aks.location
   server_name         = azurerm_sql_server.database.name
