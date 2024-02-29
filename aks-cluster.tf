@@ -1,20 +1,17 @@
 # AKS-CLUSTER
 #
 
-# To generate a unique name
-resource "random_pet" "prefix" {}
-
 provider "azurerm" {
   features {}
 }
 
 resource "azurerm_resource_group" "aks" {
-  name     = "${random_pet.prefix.id}-rg"
+  name     = "aks-resource-group"
   location = "East US"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "${random_pet.prefix.id}-aks"
+  name                = "aks-cluster"
   location            = azurerm_resource_group.aks.location
   resource_group_name = azurerm_resource_group.aks.name
   dns_prefix          = "${random_pet.prefix.id}-k8s"
