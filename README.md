@@ -79,9 +79,3 @@ terraform plan
 ```
 terraform apply
 ```
-
-5. Login to azure cloud from cli
-```
-az login
-```
-6. 
